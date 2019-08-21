@@ -1,0 +1,62 @@
+  
+ 
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="login">
+    {{if isSignin}}
+    <img src="/public/images/user2-160x160.jpg" class="user-image" alt="User Image">
+    <span >你好，{{username}}</span>
+    {{/if}}
+    {{if !isSignin}}
+    <span class="hidden-xs" id="btn-signin">登录</span>
+    <span class="hidden-xs" id="btn-signup">注册</span>
+    {{/if}}
+  </a>
+
+
+<ul class="dropdown-menu">
+    {{ if isSignin}}
+        <li class="user-header">
+        <img src="/public/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+        <p>          
+            <small>{{username}}，你好呀！</small>
+            今天又是充满希望的一天
+        </p>
+        </li>
+    {{/if}}
+ 
+    {{if !isSignin}}
+    <li class="user-body">
+        <div class="box box-primary">      
+            <!-- form start -->
+            <form role="form" id="user-form">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <input type="email" class="form-control" name="username" id="username" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="请输入密码">
+                    </div>    
+                </div>     
+            </form>
+        </div>
+    </li>
+    {{/if}}
+
+    <li class="user-footer">
+        <div class="pull-left">
+            <a href="#" class="btn btn-default btn-flat">关闭</a>
+        </div>
+        {{if !isSignin}}
+        <div class="pull-right" id="btn-submit">
+            <a href="#" class="btn btn-default btn-flat ">确认</a>
+        </div>
+        {{/if}}
+        {{if isSignin}}
+        <div class="pull-right" id="btn-signout">
+            <a href="#" class="btn btn-default btn-flat">退出</a>
+        </div>
+        {{/if}}
+    </li>
+</ul>
