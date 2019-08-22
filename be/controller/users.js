@@ -5,6 +5,7 @@ const tools = require('../utils/tools')
 
 module.exports ={
     async signup(req,res,next){
+        res.set('content-type','application/json;charset=utf-8')
         //获取请求的user pass
         let {username,password} = req.body
 
@@ -38,7 +39,9 @@ module.exports ={
         }
 
     },
+
     async signin(req,res,next){
+        res.set('content-type','application/json;charset=utf-8')
         let {username,password} = req.body
 
         //从数据库根据用户名请求用户信息
@@ -46,7 +49,8 @@ module.exports ={
         if(result){
             //这里是个promise
             if( await tools.compare(password,result.password)){
-                
+                //在浏览器中种下cookie
+                req.session.username = username
                 res.render('succ',{
                     data:JSON.stringify({
                         msg :"用户登录成功~",
@@ -69,5 +73,41 @@ module.exports ={
                 })
             })
         }
+    },
+
+    async isSignin(req,res,next){
+        res.set('content-type','application/json;charset=utf-8')
+        let username = req.session.username
+        let url = req.url 
+        if(username){
+            if(url == '/isSignin'){
+                // console.log(1)
+                res.render('succ',{
+                    data : JSON.stringify({
+                        msg : '用户有权限',
+                        username
+                    })
+                })
+            }else{
+                // console.log(url)
+                next()
+            }       
+        }else{
+            res.render('error',{
+                data : JSON.stringify({
+                    msg : '用户没有权限'
+                })
+            })
+        }
+    },
+
+    async signout(req,res,next){
+        res.set('content-type','application/json;charset=utf-8')
+        req.session = null
+        res.render('succ',{
+            data : JSON.stringify({
+                msg : "用户退出成功"
+            })
+        })
     }
 }

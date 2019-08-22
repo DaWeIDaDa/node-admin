@@ -18,10 +18,9 @@ module.exports = {
     },
     devServer:{
         contentBase:path.join(__dirname,"../dev"),
-        compress:true,
         port : 8000,
         proxy: {
-            "/api": "http://localhost:3000"
+            '/api': 'http://localhost:3000'
         }
     },
     //打包html css js

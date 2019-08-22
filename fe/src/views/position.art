@@ -16,10 +16,11 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
+            {{each list}}
             <table class="table table-hover">
             <tr>
-                <th>ID</th>
-                <th>User</th>
+                <th>{{$index+1}}</th>
+                <th>{{$value.task}}</th>
                 <th>Date</th>
                 <th>Status</th>
                 <th>Reason</th>
@@ -53,6 +54,7 @@
                 <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
             </tr>
             </table>
+            {{/each}}
         </div>
         <!-- /.box-body -->
         </div>

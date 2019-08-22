@@ -2,6 +2,7 @@ import SMERouter from 'sme-router'
 const router = new SMERouter('router-view', "hash")
 import Home from '../controllers/home'
 import Position from '../controllers/position'
+import User from '../controllers/user'
 
 /**
  * sme-router中间件添加使用router.use 
@@ -23,5 +24,7 @@ router.route("/",Home.render)
 router.route("/position",Position.render)
 router.redirect("/")
 
+//登录那一块
+User.render()
 
 export default router
